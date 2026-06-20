@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-obsidian: #040406;
+  --bg-glass: rgba(13, 11, 10, 0.65);
+  --border-glass: rgba(255, 255, 255, 0.035);
+  --border-glass-focus: rgba(255, 123, 0, 0.25);
+  
+  --text-main: #fcfbfa;
+  --text-sub: #a19c96;
+  
+  /* Sunset Amber Palette */
+  --sunset-amber: #ff7b00;
+  --sunset-coral: #e76f51;
+  --sunset-gold: #ffb703;
+  --sunset-red: #d62828;
+  --sunset-bronze: #f4a261;
+  
+  --gradient-sunset: linear-gradient(135deg, var(--sunset-amber) 0%, var(--sunset-gold) 100%);
+  --gradient-sunset-hover: linear-gradient(135deg, #ff5100 0%, var(--sunset-amber) 100%);
+  
+  --glow-amber: 0 0 15px rgba(255, 123, 0, 0.35);
+  --glow-gold: 0 0 15px rgba(255, 183, 3, 0.35);
+  --glow-coral: 0 0 15px rgba(231, 111, 81, 0.35);
+  --glow-white: 0 0 15px rgba(255, 255, 255, 0.4);
+  
+  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.65);
+  
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.5;
+  color-scheme: dark;
+  background-color: var(--bg-obsidian);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #120e0a 0%, #040406 80%);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
