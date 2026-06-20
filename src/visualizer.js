@@ -22,6 +22,11 @@ const ALGO_METADATA = {
   blockSort: { stats: ['comparisons', 'overwrites', 'time'] },
   librarySort: { stats: ['comparisons', 'overwrites', 'time'] },
   smoothsort: { stats: ['comparisons', 'swaps', 'time'] },
+  bogoSort: { stats: ['comparisons', 'swaps', 'time'] },
+  sleepSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  stoogeSort: { stats: ['comparisons', 'swaps', 'time'] },
+  pancakeSorting: { stats: ['comparisons', 'swaps', 'time'] },
+  gnomeSort: { stats: ['comparisons', 'swaps', 'time'] },
 };
 
 const ALGO_DETAILS = {
@@ -46,6 +51,11 @@ const ALGO_DETAILS = {
   blockSort: { stats: ['comparisons', 'overwrites', 'time'] },,
   librarySort: { stats: ['comparisons', 'overwrites', 'time'] },,
   smoothsort: { stats: ['comparisons', 'swaps', 'time'] },,
+  bogoSort: { stats: ['comparisons', 'swaps', 'time'] },,
+  sleepSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  stoogeSort: { stats: ['comparisons', 'swaps', 'time'] },,
+  pancakeSorting: { stats: ['comparisons', 'swaps', 'time'] },,
+  gnomeSort: { stats: ['comparisons', 'swaps', 'time'] },,
 };
 
 export class Visualizer {

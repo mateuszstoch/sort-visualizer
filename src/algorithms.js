@@ -564,3 +564,80 @@ export function* wikiSort(arr) {
 export function* blockSort(arr) {
   yield* blockMergeSort(arr);
 }
+export function* bogoSort(arr) {
+  const n = arr.length;
+  while (!isSorted(arr)) {
+    // Shuffle
+    for (let i = n - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      yield* swap(arr, i, j);
+    }
+  }
+}
+
+export function* sleepSort(arr) {
+  // Sleep Sort - simulated sorting by copying values mapped linearly
+  const sorted = [...arr].sort((a, b) => a - b);
+  for (let i = 0; i < arr.length; i++) {
+    yield* compare(i, i);
+    yield* overwrite(arr, i, sorted[i]);
+  }
+}
+
+export function* stoogeSort(arr, l = 0, h = arr.length - 1) {
+  yield* compare(l, h);
+  if (arr[l] > arr[h]) {
+    yield* swap(arr, l, h);
+  }
+  if (h - l + 1 > 2) {
+    const t = Math.floor((h - l + 1) / 3);
+    yield* stoogeSort(arr, l, h - t);
+    yield* stoogeSort(arr, l + t, h);
+    yield* stoogeSort(arr, l, h - t);
+  }
+}
+
+export function* pancakeSorting(arr) {
+  const n = arr.length;
+  for (let currSize = n; currSize > 1; currSize--) {
+    let maxIdx = 0;
+    for (let i = 1; i < currSize; i++) {
+      yield* compare(i, maxIdx);
+      if (arr[i] > arr[maxIdx]) maxIdx = i;
+    }
+    if (maxIdx !== currSize - 1) {
+      if (maxIdx !== 0) {
+        yield* flipPancake(arr, maxIdx);
+      }
+      yield* flipPancake(arr, currSize - 1);
+    }
+  }
+}
+
+export function* gnomeSort(arr) {
+  const n = arr.length;
+  let index = 0;
+  while (index < n) {
+    if (index === 0) index++;
+    yield* compare(index, index - 1);
+    if (arr[index] >= arr[index - 1]) {
+      index++;
+    } else {
+      yield* swap(arr, index, index - 1);
+      index--;
+    }
+  }
+}
+
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] > arr[i + 1]) return false;
+  }
+  return true;
+}
+  let left = 0;
+  while (left < k) {
+    yield* swap(arr, left, k);
+    left++; k--;
+  }
+}
