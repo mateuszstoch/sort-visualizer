@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SortVisualizer - Premium Sorting Algorithm Visualizer</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Ambient Background Glow Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <header>
+      <div class="header-top">
+        <div class="brand">
+          <h1>SortVisualizer</h1>
+          <span class="badge">Cosmic Edition</span>
+        </div>
+        
+        <div class="global-actions">
+          <button id="btn-mute" class="btn btn-audio">
+            <span class="mute-icon">🔊</span> Audio: ON
+          </button>
+        </div>
+      </div>
+      
+      <div class="controls-panel">
+        <button id="btn-randomize" class="btn btn-random">
+          <span>🎲</span> Generate Array
+        </button>
+        
+        <div class="control-group">
+          <label for="input-size">Size</label>
+          <input type="number" id="input-size" min="5" max="300" value="50" class="input-glass" />
+        </div>
+        
+        <div class="control-group">
+          <label for="input-speed">Delay (ms)</label>
+          <input type="number" id="input-speed" min="0" max="2000" value="30" class="input-glass" />
+        </div>
+        
+        <div class="control-group">
+          <span class="control-label">Compare Mode</span>
+          <label class="switch">
+            <input type="checkbox" id="check-compare" />
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+        
+        <div class="control-group" id="sync-group" style="display: none;">
+          <span class="control-label">Sync Data</span>
+          <label class="switch">
+            <input type="checkbox" id="check-sync" checked />
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+        
+        <div class="spacer"></div>
+        
+        <div class="control-group">
+          <button id="btn-start" class="btn btn-primary" disabled>
+            <span>▶</span> Start
+          </button>
+          <button id="btn-reset" class="btn btn-reset-style">
+            <span>🔄</span> Reset
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="visualizers-container single-mode" id="visualizers-wrapper">
+      <!-- Visualizer A -->
+      <section id="visualizer-a" class="visualizer-panel">
+        <div class="panel-header">
+          <div class="select-wrapper">
+            <select id="select-algo-a" class="algo-select">
+              <option value="quickSort" selected>Quick Sort (Lomuto)</option>
+              <option value="mergeSort">Merge Sort</option>
+              <option value="heapSort">Heap Sort</option>
+              <option value="radixSort">Radix Sort (LSD)</option>
+              <option value="insertionSort">Insertion Sort</option>
+              <option value="selectionSort">Selection Sort</option>
+              <option value="bubbleSort">Bubble Sort</option>
+            </select>
+          </div>
+          
+          <div class="stats-row">
+            <div class="stat-card" data-stat="comparisons">
+              <span class="stat-label">Comparisons</span>
+              <span class="stat-value stat-comparisons">0</span>
+            </div>
+            <div class="stat-card" data-stat="swaps">
+              <span class="stat-label">Swaps</span>
+              <span class="stat-value stat-swaps">0</span>
+            </div>
+            <div class="stat-card" data-stat="overwrites">
+              <span class="stat-label">Overwrites</span>
+              <span class="stat-value stat-overwrites">0</span>
+            </div>
+            <div class="stat-card" data-stat="time">
+              <span class="stat-label">Time Elapsed</span>
+              <span class="stat-value stat-time time">0.00s</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bars-container" id="container-bars-a">
+          <!-- Dynamically generated bars -->
+        </div>
+        
+        <div class="pseudocode-container">
+          <div class="pseudocode-header">Algorithm Details</div>
+          <div class="algo-description"></div>
+          <div class="algo-complexity"></div>
+          
+          <div class="pseudocode-header" style="margin-top: 14px;">Python Implementation</div>
+          <pre class="pseudocode-text"><code></code></pre>
+        </div>
+      </section>
+
+      <!-- Visualizer B (Hidden in single-mode) -->
+      <section id="visualizer-b" class="visualizer-panel">
+        <div class="panel-header">
+          <div class="select-wrapper">
+            <select id="select-algo-b" class="algo-select">
+              <option value="quickSort">Quick Sort (Lomuto)</option>
+              <option value="mergeSort" selected>Merge Sort</option>
+              <option value="heapSort">Heap Sort</option>
+              <option value="radixSort">Radix Sort (LSD)</option>
+              <option value="insertionSort">Insertion Sort</option>
+              <option value="selectionSort">Selection Sort</option>
+              <option value="bubbleSort">Bubble Sort</option>
+            </select>
+          </div>
+          
+          <div class="stats-row">
+            <div class="stat-card" data-stat="comparisons">
+              <span class="stat-label">Comparisons</span>
+              <span class="stat-value stat-comparisons">0</span>
+            </div>
+            <div class="stat-card" data-stat="swaps">
+              <span class="stat-label">Swaps</span>
+              <span class="stat-value stat-swaps">0</span>
+            </div>
+            <div class="stat-card" data-stat="overwrites">
+              <span class="stat-label">Overwrites</span>
+              <span class="stat-value stat-overwrites">0</span>
+            </div>
+            <div class="stat-card" data-stat="time">
+              <span class="stat-label">Time Elapsed</span>
+              <span class="stat-value stat-time time">0.00s</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bars-container" id="container-bars-b">
+          <!-- Dynamically generated bars -->
+        </div>
+        
+        <div class="pseudocode-container">
+          <div class="pseudocode-header">Algorithm Details</div>
+          <div class="algo-description"></div>
+          <div class="algo-complexity"></div>
+          
+          <div class="pseudocode-header" style="margin-top: 14px;">Python Implementation</div>
+          <pre class="pseudocode-text"><code></code></pre>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
