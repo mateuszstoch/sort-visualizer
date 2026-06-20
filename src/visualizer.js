@@ -4,12 +4,24 @@ const ALGO_METADATA = {
   bubbleSort: { stats: ['comparisons', 'swaps', 'time'] },
   selectionSort: { stats: ['comparisons', 'swaps', 'time'] },
   insertionSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  quickSort: { stats: ['comparisons', 'swaps', 'time'] },
+  quickSort3Way: { stats: ['comparisons', 'swaps', 'time'] },
+  quick2Sort: { stats: ['comparisons', 'swaps', 'time'] },
+  mergeSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  inplaceMergeSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  heapSort: { stats: ['comparisons', 'swaps', 'time'] },
 };
 
 const ALGO_DETAILS = {
   bubbleSort: { stats: ['comparisons', 'swaps', 'time'] },,
   selectionSort: { stats: ['comparisons', 'swaps', 'time'] },,
   insertionSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  quickSort: { stats: ['comparisons', 'swaps', 'time'] },,
+  quickSort3Way: { stats: ['comparisons', 'swaps', 'time'] },,
+  quick2Sort: { stats: ['comparisons', 'swaps', 'time'] },,
+  mergeSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  inplaceMergeSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  heapSort: { stats: ['comparisons', 'swaps', 'time'] },,
 };
 
 export class Visualizer {
