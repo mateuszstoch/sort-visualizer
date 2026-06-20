@@ -75,13 +75,64 @@
         <div class="panel-header">
           <div class="select-wrapper">
             <select id="select-algo-a" class="algo-select">
-              <option value="quickSort" selected>Quick Sort (Lomuto)</option>
-              <option value="mergeSort">Merge Sort</option>
-              <option value="heapSort">Heap Sort</option>
-              <option value="radixSort">Radix Sort (LSD)</option>
-              <option value="insertionSort">Insertion Sort</option>
-              <option value="selectionSort">Selection Sort</option>
-              <option value="bubbleSort">Bubble Sort</option>
+              <optgroup label="Divide & Conquer / Efficient">
+                <option value="quickSort" selected>Quick Sort (Lomuto)</option>
+                <option value="quickSort3Way">Quick Sort (3-Way)</option>
+                <option value="quick2Sort">Quick2Sort (Dual Pivot)</option>
+                <option value="mergeSort">Merge Sort</option>
+                <option value="inplaceMergeSort">In-place Merge Sort</option>
+                <option value="heapSort">Heap Sort</option>
+                <option value="smoothsort">Smoothsort</option>
+                <option value="tournamentSort">Tournament Sort</option>
+                <option value="wikiSort">WikiSort (Block Merge)</option>
+                <option value="blockSort">Block Sort</option>
+                <option value="treeSort">Tree Sort</option>
+                <option value="cartesianTreeSort">Cartesian Tree Sort</option>
+                <option value="splaySort">Splay Sort</option>
+              </optgroup>
+              <optgroup label="Simple / Quadratic">
+                <option value="bubbleSort">Bubble Sort</option>
+                <option value="selectionSort">Selection Sort</option>
+                <option value="insertionSort">Insertion Sort</option>
+                <option value="shellSort">Shell Sort</option>
+                <option value="shellMetznerSort">Shell-Metzner Sort</option>
+                <option value="cocktailShakerSort">Cocktail Shaker Sort</option>
+                <option value="gnomeSort">Gnome Sort</option>
+                <option value="combSort">Comb Sort</option>
+                <option value="oddEvenSort">Odd-Even Sort</option>
+                <option value="cycleSort">Cycle Sort</option>
+                <option value="librarySort">Library Sort</option>
+                <option value="pancakeSorting">Pancake Sort</option>
+                <option value="wiggleSort">Wiggle Sort</option>
+                <option value="tagSort">Tag Sort</option>
+              </optgroup>
+              <optgroup label="Non-Comparison">
+                <option value="radixSort">Radix Sort (LSD)</option>
+                <option value="countingSort">Counting Sort</option>
+                <option value="bucketSort">Bucket Sort</option>
+                <option value="pigeonholeSort">Pigeonhole Sort</option>
+                <option value="flashsort">Flashsort</option>
+                <option value="spreadSort">Spread Sort</option>
+                <option value="beadingSort">Bead / Gravity Sort</option>
+                <option value="burstSort">Burst Sort</option>
+                <option value="proxmapSort">Proxmap Sort</option>
+                <option value="postmanSort">Postman Sort</option>
+                <option value="spaghettiSort">Spaghetti Sort</option>
+                <option value="interpolationSort">Interpolation Sort</option>
+              </optgroup>
+              <optgroup label="Hybrid & Advanced">
+                <option value="timSort">TimSort</option>
+                <option value="mergeInsertionSort">Merge-Insertion Sort</option>
+                <option value="samplesort">Samplesort</option>
+                <option value="jSort">JSort</option>
+              </optgroup>
+              <optgroup label="Esoteric & Impractical">
+                <option value="bogoSort">Bogo Sort</option>
+                <option value="sleepSort">Sleep Sort</option>
+                <option value="stoogeSort">Stooge Sort</option>
+                <option value="strandSort">Strand Sort</option>
+                <option value="patienceSorting">Patience Sort</option>
+              </optgroup>
             </select>
           </div>
           
@@ -124,13 +175,64 @@
         <div class="panel-header">
           <div class="select-wrapper">
             <select id="select-algo-b" class="algo-select">
-              <option value="quickSort">Quick Sort (Lomuto)</option>
-              <option value="mergeSort" selected>Merge Sort</option>
-              <option value="heapSort">Heap Sort</option>
-              <option value="radixSort">Radix Sort (LSD)</option>
-              <option value="insertionSort">Insertion Sort</option>
-              <option value="selectionSort">Selection Sort</option>
-              <option value="bubbleSort">Bubble Sort</option>
+              <optgroup label="Divide & Conquer / Efficient">
+                <option value="quickSort">Quick Sort (Lomuto)</option>
+                <option value="quickSort3Way">Quick Sort (3-Way)</option>
+                <option value="quick2Sort">Quick2Sort (Dual Pivot)</option>
+                <option value="mergeSort" selected>Merge Sort</option>
+                <option value="inplaceMergeSort">In-place Merge Sort</option>
+                <option value="heapSort">Heap Sort</option>
+                <option value="smoothsort">Smoothsort</option>
+                <option value="tournamentSort">Tournament Sort</option>
+                <option value="wikiSort">WikiSort (Block Merge)</option>
+                <option value="blockSort">Block Sort</option>
+                <option value="treeSort">Tree Sort</option>
+                <option value="cartesianTreeSort">Cartesian Tree Sort</option>
+                <option value="splaySort">Splay Sort</option>
+              </optgroup>
+              <optgroup label="Simple / Quadratic">
+                <option value="bubbleSort">Bubble Sort</option>
+                <option value="selectionSort">Selection Sort</option>
+                <option value="insertionSort">Insertion Sort</option>
+                <option value="shellSort">Shell Sort</option>
+                <option value="shellMetznerSort">Shell-Metzner Sort</option>
+                <option value="cocktailShakerSort">Cocktail Shaker Sort</option>
+                <option value="gnomeSort">Gnome Sort</option>
+                <option value="combSort">Comb Sort</option>
+                <option value="oddEvenSort">Odd-Even Sort</option>
+                <option value="cycleSort">Cycle Sort</option>
+                <option value="librarySort">Library Sort</option>
+                <option value="pancakeSorting">Pancake Sort</option>
+                <option value="wiggleSort">Wiggle Sort</option>
+                <option value="tagSort">Tag Sort</option>
+              </optgroup>
+              <optgroup label="Non-Comparison">
+                <option value="radixSort">Radix Sort (LSD)</option>
+                <option value="countingSort">Counting Sort</option>
+                <option value="bucketSort">Bucket Sort</option>
+                <option value="pigeonholeSort">Pigeonhole Sort</option>
+                <option value="flashsort">Flashsort</option>
+                <option value="spreadSort">Spread Sort</option>
+                <option value="beadingSort">Bead / Gravity Sort</option>
+                <option value="burstSort">Burst Sort</option>
+                <option value="proxmapSort">Proxmap Sort</option>
+                <option value="postmanSort">Postman Sort</option>
+                <option value="spaghettiSort">Spaghetti Sort</option>
+                <option value="interpolationSort">Interpolation Sort</option>
+              </optgroup>
+              <optgroup label="Hybrid & Advanced">
+                <option value="timSort">TimSort</option>
+                <option value="mergeInsertionSort">Merge-Insertion Sort</option>
+                <option value="samplesort">Samplesort</option>
+                <option value="jSort">JSort</option>
+              </optgroup>
+              <optgroup label="Esoteric & Impractical">
+                <option value="bogoSort">Bogo Sort</option>
+                <option value="sleepSort">Sleep Sort</option>
+                <option value="stoogeSort">Stooge Sort</option>
+                <option value="strandSort">Strand Sort</option>
+                <option value="patienceSorting">Patience Sort</option>
+              </optgroup>
             </select>
           </div>
           
