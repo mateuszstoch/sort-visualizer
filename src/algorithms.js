@@ -230,3 +230,146 @@ function* heapify(arr, n, i) {
     yield* heapify(arr, n, largest);
   }
 }
+export function* radixSort(arr) {
+  if (arr.length === 0) return;
+  const max = Math.max(...arr);
+  for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
+    yield* countingSortForRadix(arr, exp);
+  }
+}
+
+export function* countingSort(arr) {
+  const n = arr.length;
+  if (n <= 1) return;
+  const max = Math.max(...arr);
+  const min = Math.min(...arr);
+  const range = max - min + 1;
+  const count = new Array(range).fill(0);
+  for (let i = 0; i < n; i++) {
+    count[arr[i] - min]++;
+    yield { type: 'compare', indices: [i] };
+  }
+  let index = 0;
+  for (let i = 0; i < range; i++) {
+    while (count[i] > 0) {
+      yield* overwrite(arr, index, i + min);
+      index++;
+      count[i]--;
+    }
+  }
+}
+
+export function* bucketSort(arr) {
+  const n = arr.length;
+  if (n <= 1) return;
+  const max = Math.max(...arr);
+  const min = Math.min(...arr);
+  const bucketCount = Math.floor(Math.sqrt(n)) || 1;
+  const buckets = Array.from({ length: bucketCount }, () => []);
+  const range = (max - min) / bucketCount || 1;
+  
+  for (let i = 0; i < n; i++) {
+    let bucketIdx = Math.floor((arr[i] - min) / range);
+    if (bucketIdx >= bucketCount) bucketIdx = bucketCount - 1;
+    buckets[bucketIdx].push(arr[i]);
+    yield { type: 'compare', indices: [i] };
+  }
+  
+  let idx = 0;
+  for (let i = 0; i < bucketCount; i++) {
+    // Insertion sort inside buckets
+    const bucket = buckets[i];
+    for (let b = 1; b < bucket.length; b++) {
+      const key = bucket[b];
+      let j = b - 1;
+      while (j >= 0 && bucket[j] > key) {
+        bucket[j + 1] = bucket[j];
+        j--;
+      }
+      bucket[j + 1] = key;
+    }
+    for (let b = 0; b < bucket.length; b++) {
+      yield* overwrite(arr, idx, bucket[b]);
+      idx++;
+    }
+  }
+}
+
+export function* pigeonholeSort(arr) {
+  const n = arr.length;
+  if (n <= 1) return;
+  const min = Math.min(...arr);
+  const max = Math.max(...arr);
+  const range = max - min + 1;
+  const holes = Array.from({ length: range }, () => []);
+  for (let i = 0; i < n; i++) {
+    holes[arr[i] - min].push(arr[i]);
+    yield { type: 'compare', indices: [i] };
+  }
+  let index = 0;
+  for (let i = 0; i < range; i++) {
+    const hole = holes[i];
+    for (let h = 0; h < hole.length; h++) {
+      yield* overwrite(arr, index, hole[h]);
+      index++;
+    }
+  }
+}
+
+export function* beadingSort(arr) {
+  const n = arr.length;
+  if (n <= 1) return;
+  const max = Math.max(...arr);
+  const beads = Array.from({ length: n }, () => new Array(max).fill(0));
+  
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < arr[i]; j++) {
+      beads[i][j] = 1;
+    }
+    yield { type: 'compare', indices: [i] };
+  }
+  
+  // Drop beads down
+  for (let j = 0; j < max; j++) {
+    let sum = 0;
+    for (let i = 0; i < n; i++) {
+      sum += beads[i][j];
+      beads[i][j] = 0;
+    }
+    for (let i = n - sum; i < n; i++) {
+      beads[i][j] = 1;
+    }
+  }
+  
+  for (let i = 0; i < n; i++) {
+    let val = 0;
+    for (let j = 0; j < max; j++) {
+      if (beads[i][j] === 1) val++;
+    }
+    yield* overwrite(arr, i, val);
+  }
+}
+
+export function* gravitySort(arr) {
+  yield* beadingSort(arr);
+}
+
+
+function* countingSortForRadix(arr, exp) {
+  const n = arr.length;
+  const output = new Array(n);
+  const count = new Array(10).fill(0);
+  for (let i = 0; i < n; i++) {
+    count[Math.floor(arr[i] / exp) % 10]++;
+    yield { type: 'compare', indices: [i] };
+  }
+  for (let i = 1; i < 10; i++) count[i] += count[i - 1];
+  for (let i = n - 1; i >= 0; i--) {
+    const digit = Math.floor(arr[i] / exp) % 10;
+    output[count[digit] - 1] = arr[i];
+    count[digit]--;
+  }
+  for (let i = 0; i < n; i++) {
+    yield* overwrite(arr, i, output[i]);
+  }
+}

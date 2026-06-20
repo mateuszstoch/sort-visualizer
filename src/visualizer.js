@@ -10,6 +10,12 @@ const ALGO_METADATA = {
   mergeSort: { stats: ['comparisons', 'overwrites', 'time'] },
   inplaceMergeSort: { stats: ['comparisons', 'overwrites', 'time'] },
   heapSort: { stats: ['comparisons', 'swaps', 'time'] },
+  radixSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  countingSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  bucketSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  pigeonholeSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  beadingSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  gravitySort: { stats: ['comparisons', 'overwrites', 'time'] },
 };
 
 const ALGO_DETAILS = {
@@ -22,6 +28,12 @@ const ALGO_DETAILS = {
   mergeSort: { stats: ['comparisons', 'overwrites', 'time'] },,
   inplaceMergeSort: { stats: ['comparisons', 'overwrites', 'time'] },,
   heapSort: { stats: ['comparisons', 'swaps', 'time'] },,
+  radixSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  countingSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  bucketSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  pigeonholeSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  beadingSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  gravitySort: { stats: ['comparisons', 'overwrites', 'time'] },,
 };
 
 export class Visualizer {
