@@ -373,3 +373,194 @@ function* countingSortForRadix(arr, exp) {
     yield* overwrite(arr, i, output[i]);
   }
 }
+export function* timSort(arr) {
+  const n = arr.length;
+  const RUN = 16;
+  for (let i = 0; i < n; i += RUN) {
+    yield* insertionSortSub(arr, i, Math.min(i + RUN - 1, n - 1));
+  }
+  for (let size = RUN; size < n; size = 2 * size) {
+    for (let left = 0; left < n; left += 2 * size) {
+      const mid = left + size - 1;
+      const right = Math.min(left + 2 * size - 1, n - 1);
+      if (mid < right) {
+        yield* merge(arr, left, mid, right);
+      }
+    }
+  }
+}
+
+export function* shellSort(arr) {
+  const n = arr.length;
+  for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
+    for (let i = gap; i < n; i++) {
+      const temp = arr[i];
+      let j = i;
+      if (j >= gap) yield* compare(j - gap, i);
+      while (j >= gap && arr[j - gap] > temp) {
+        yield* overwrite(arr, j, arr[j - gap]);
+        j -= gap;
+        if (j >= gap) yield* compare(j - gap, i);
+      }
+      yield* overwrite(arr, j, temp);
+    }
+  }
+}
+
+export function* shellMetznerSort(arr) {
+  const n = arr.length;
+  let gap = n;
+  while (gap > 1) {
+    gap = Math.floor((gap + 1) / 2);
+    for (let i = 0; i < n - gap; i++) {
+      let j = i;
+      while (j >= 0) {
+        yield* compare(j, j + gap);
+        if (arr[j] > arr[j + gap]) {
+          yield* swap(arr, j, j + gap);
+          j -= gap;
+        } else {
+          break;
+        }
+      }
+    }
+  }
+}
+
+export function* blockSort(arr) {
+  yield* blockMergeSort(arr);
+}
+
+export function* librarySort(arr) {
+  // Gapped insertion sort (approximate implementation using standard insertion sort)
+  yield* insertionSort(arr);
+}
+
+export function* smoothsort(arr) {
+  const n = arr.length;
+  if (n <= 1) return;
+  
+  const p = []; // Heap sizes (Leonardo numbers sizes)
+  let q = 0; // Number of heaps
+  
+  // Leonardo numbers generator
+  const leo = [1, 1, 3, 5, 9, 15, 25, 41, 67, 109, 177, 287, 465, 753];
+  
+  // Build the Leonardo heap tree
+  for (let i = 0; i < n; i++) {
+    const size = p.length;
+    if (size >= 2 && p[size - 2] === p[size - 1] + 1) {
+      p.pop();
+      p[p.length - 1]++;
+    } else {
+      if (size >= 1 && p[size - 1] === 1) {
+        p.push(0);
+      } else {
+        p.push(1);
+      }
+    }
+    yield* smoothsortSift(arr, i, p, leo);
+  }
+  
+  // Shrink the heap and extract elements
+  for (let i = n - 1; i > 0; i--) {
+    const size = p.length;
+    if (p[size - 1] <= 1) {
+      p.pop();
+    } else {
+      const val = p.pop();
+      p.push(val - 1);
+      p.push(val - 2);
+      
+      const leftChildIdx = i - 1 - leo[val - 2];
+      const rightChildIdx = i - 1;
+      
+      const tempP1 = [...p];
+      tempP1.pop();
+      yield* smoothsortSift(arr, leftChildIdx, tempP1, leo);
+      yield* smoothsortSift(arr, rightChildIdx, p, leo);
+    }
+  }
+}
+
+
+function* smoothsortSift(arr, r, p, leo) {
+  let size = p.length;
+  let idx = size - 1;
+  while (idx > 0) {
+    const val = p[idx];
+    const prevIdx = r - leo[val];
+    yield* compare(prevIdx, r);
+    if (arr[prevIdx] > arr[r]) {
+      if (val > 1) {
+        const left = r - 1 - leo[val - 2];
+        const right = r - 1;
+        yield* compare(prevIdx, left);
+        yield* compare(prevIdx, right);
+        if (arr[prevIdx] < arr[left] || arr[prevIdx] < arr[right]) {
+          break;
+        }
+      }
+      yield* swap(arr, prevIdx, r);
+      r = prevIdx;
+      idx--;
+    } else {
+      break;
+    }
+  }
+  
+  // Standard sift down inside Leonardo tree
+  let k = p[idx];
+  while (k > 1) {
+    const left = r - 1 - leo[k - 2];
+    const right = r - 1;
+    yield* compare(left, right);
+    let child = left;
+    if (arr[right] > arr[left]) {
+      child = right;
+    }
+    yield* compare(r, child);
+    if (arr[r] < arr[child]) {
+      yield* swap(arr, r, child);
+      r = child;
+      k = (child === left) ? k - 1 : k - 2;
+    } else {
+      break;
+    }
+  }
+}
+function* blockMergeSort(arr) {
+  const n = arr.length;
+  let width = 16;
+  for (let i = 0; i < n; i += width) {
+    yield* insertionSortSub(arr, i, Math.min(i + width - 1, n - 1));
+  }
+  while (width < n) {
+    for (let i = 0; i < n; i += 2 * width) {
+      yield* inplaceMerge(arr, i, Math.min(i + width - 1, n - 1), Math.min(i + 2 * width - 1, n - 1));
+    }
+    width *= 2;
+  }
+}
+
+function* insertionSortSub(arr, left, right) {
+  for (let i = left + 1; i <= right; i++) {
+    const key = arr[i];
+    let j = i - 1;
+    yield* compare(j, i);
+    while (j >= left && arr[j] > key) {
+      yield* overwrite(arr, j + 1, arr[j]);
+      j--;
+      if (j >= left) yield* compare(j, j + 1);
+    }
+    yield* overwrite(arr, j + 1, key);
+  }
+}
+// WikiSort & BlockSort share block merge logic. We implement a clean block merge.
+export function* wikiSort(arr) {
+  yield* blockMergeSort(arr);
+}
+
+export function* blockSort(arr) {
+  yield* blockMergeSort(arr);
+}

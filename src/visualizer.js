@@ -16,6 +16,12 @@ const ALGO_METADATA = {
   pigeonholeSort: { stats: ['comparisons', 'overwrites', 'time'] },
   beadingSort: { stats: ['comparisons', 'overwrites', 'time'] },
   gravitySort: { stats: ['comparisons', 'overwrites', 'time'] },
+  timSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  shellSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  shellMetznerSort: { stats: ['comparisons', 'swaps', 'time'] },
+  blockSort: { stats: ['comparisons', 'overwrites', 'time'] },
+  librarySort: { stats: ['comparisons', 'overwrites', 'time'] },
+  smoothsort: { stats: ['comparisons', 'swaps', 'time'] },
 };
 
 const ALGO_DETAILS = {
@@ -34,6 +40,12 @@ const ALGO_DETAILS = {
   pigeonholeSort: { stats: ['comparisons', 'overwrites', 'time'] },,
   beadingSort: { stats: ['comparisons', 'overwrites', 'time'] },,
   gravitySort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  timSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  shellSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  shellMetznerSort: { stats: ['comparisons', 'swaps', 'time'] },,
+  blockSort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  librarySort: { stats: ['comparisons', 'overwrites', 'time'] },,
+  smoothsort: { stats: ['comparisons', 'swaps', 'time'] },,
 };
 
 export class Visualizer {
