@@ -63,7 +63,7 @@ const ALGO_METADATA = {
   bitonicSort: { stats: ['comparisons', 'swaps', 'time'] }
 };
 
-
+// Detailed mapping of all 50 algorithms to descriptions, complexity and Python code
 const ALGO_DETAILS = {
   // ==========================================
   // Divide & Conquer / Efficient
@@ -1045,7 +1045,6 @@ def sleep_sort(arr):
         bitonic_merge(arr, low, cnt, direction)`
   }
 };
-
 
 export class Visualizer {
   /**
